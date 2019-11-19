@@ -1,0 +1,22 @@
+
+spring:
+  application:
+    name: jpacache
+
+  redis:
+    database: 2
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+
+  datasource:
+    name: default
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/jpacache?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update

@@ -1,0 +1,23 @@
+###
+GET http://localhost:8080/user?email=hongjing@edison.tech
+
+###
+POST http://localhost:8080/user/add?email=hongjing@edison.tech&name=Hongjing%20Zhou
+
+###
+POST http://localhost:8080/user/add?email=mary@edison.tech&name=Mary
+
+
+###
+POST http://localhost:8080/user/update?email=hongjing@edison.tech&name=Hongjing%20Zhou&avatar=icon.jpg&age=20
+
+###
+DELETE http://localhost:8080/user?email=hongjing@edison.tech
+
+###
+GET http://localhost:8080/users
+
+###
+GET http://localhost:8080/oldUsers?age=35
+
+###
