@@ -1,6 +1,7 @@
 # Spring JPA for MySql and Redis based Spring Cache
 1. 使用 Spring JPA 操作 MySql 数据库  
 2. 使用基于 Redis 的 Spring Cache 对 MySql 数据库操作进行缓存支持  
+
 完整示例代码 https://github.com/hongjingzhou/spring-study/tree/master/jpacache 
 
 ```
