@@ -23,7 +23,6 @@ class User : Serializable {
     var age: Int? = null
 
     constructor(email: String, name: String, avatar: String?, age: Int?) {
-
         this.email = email
         this.name = name
         this.avatar = avatar

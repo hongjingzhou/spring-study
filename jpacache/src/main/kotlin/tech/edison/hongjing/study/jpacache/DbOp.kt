@@ -14,7 +14,6 @@ class DbOp {
 
     @Cacheable(value = ["user"], key = "#email")
     fun get(email: String) : User? {
-        System.out.println("get from DB")
         return userRepo.findByIdOrNull(email)
     }
 
