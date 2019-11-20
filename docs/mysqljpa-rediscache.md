@@ -209,3 +209,66 @@ class DbOp {
     }
 }
 ```
+
+### 6. 配置redis支持spring cache
+```
+@Configuration
+@EnableCaching
+class CacheConfiguration {
+
+    @Bean
+    fun cacheManager(redisConnectionFactory: RedisConnectionFactory): CacheManager {
+        val redisCacheConfiguration = RedisCacheConfiguration
+            .defaultCacheConfig()
+            .entryTtl(Duration.ofDays(1))
+
+        return RedisCacheManager
+            .builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory))
+            .cacheDefaults(redisCacheConfiguration)
+            .build()
+    }
+}
+```
+
+### 7. 在需要缓存的数据库操作上添加cache注解
+```
+
+@Component
+class DbOp {
+    @Autowired
+    lateinit var userRepo: UserRepository
+
+    @Cacheable(value = ["user"], key = "#email")
+    fun get(email: String) : User? {
+        return userRepo.findByIdOrNull(email)
+    }
+
+    @CachePut(value = ["user"], key = "#email")
+    fun add(email: String, name: String, avatar: String?) : User {
+        return userRepo.save(User(email, name, avatar, null))
+    }
+
+    @CachePut(value = ["user"], key = "#email")
+    fun update(email: String, name: String, avatar: String?, age: Int?) : User {
+        return userRepo.save(User(email, name, avatar, age))
+    }
+
+    fun list() : List<User> {
+        return userRepo.findAll()
+    }
+
+    @CacheEvict(value = ["user"], key = "#email", beforeInvocation = true)
+    fun delete(email: String) {
+        userRepo.deleteById(email)
+    }
+
+    fun listOldGuys(age: Int) : List<User> {
+        return userRepo.listOldGuys(age)
+    }
+}
+
+```
+
+Done.
+完整示例代码 https://github.com/hongjingzhou/spring-study/tree/master/jpacache
+
