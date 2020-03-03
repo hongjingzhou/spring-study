@@ -36,3 +36,7 @@ mvnw
 mvnw.cmd
 
 jpacache/target/
+jpacache/src/main/.DS_Store
+jpacache/src/main/kotlin/.DS_Store
+
+
