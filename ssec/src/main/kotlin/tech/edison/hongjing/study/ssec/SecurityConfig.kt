@@ -20,7 +20,7 @@ class MyPasswordEncoder : PasswordEncoder {
 class SecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity?) {
         http?.authorizeRequests()
-                ?.antMatchers("/hello")?.permitAll()
+                ?.antMatchers("/public/scan2")?.permitAll()
                 ?.anyRequest()?.authenticated()?.and()
                 ?.formLogin()?.and()
                 ?.httpBasic()

@@ -1,0 +1,10 @@
+POST http://localhost:8080/public/scan2
+Authorization: Basic YTph
+Content-Type: application/json
+
+{
+  "master": "/Volumes/Seagate2T/Master",
+  "backup": "/Volumes/Seagate2T/三星250G重复"
+}
+
+###
